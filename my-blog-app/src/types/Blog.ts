@@ -8,7 +8,8 @@ export interface Blog {
     reading_time: string;
     content: string;
     likes: number;
-    comments: number;
+    comments: [];
+    liked?: boolean;
 }
 
 export type UserType = {
@@ -22,9 +23,12 @@ export type UserType = {
 export type BlogType = {
     id: string;
     title: string;
+    image: string;
+    author: string;
+    published_date: string;
+    reading_time: string;
     content: string;
-    date: Date;
-    user: UserType;
+    likes: number;
     comments: CommentType[];
 };
 
