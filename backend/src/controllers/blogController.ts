@@ -78,3 +78,24 @@ export const deleteBlog = (req: Request, res: Response): void => {
     res.status(404).json({ message: 'Blog not found' });
   }
 };
+
+export const addComment = (req: Request, res: Response): void => {
+  const blogs = readData();
+  const blog = blogs.find((b) => b.id === parseInt(req.params.id, 10));
+
+  if (!blog) {
+    res.status(404).json({ message: 'Blog not found' });
+    return;
+  }
+
+  const newComment = req.body.comment;
+  if (!blog.comments) {
+    blog.comments = [];
+  }
+
+  const commentIndex = blog.comments.length + 1;
+  blog.comments.push(`User ${commentIndex}: ${newComment}`);
+  writeData(blogs);
+
+  res.status(201).json({ message: 'Comment added', comments: blog.comments });
+};

@@ -113,6 +113,19 @@ const AddBlog = () => {
           value={blog.author}
           onChange={handleChange}
           required
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '&.Mui-focused fieldset': {
+                borderColor: 'primary.main',
+              },
+              '& input': {
+                backgroundColor: 'white',
+              },
+              '&.Mui-focused input': {
+                backgroundColor: 'white',
+              },
+            },
+          }}
         />
         <TextField
           label="Date"
@@ -123,6 +136,19 @@ const AddBlog = () => {
           value={blog.published_date}
           onChange={handleChange}
           required
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '&.Mui-focused fieldset': {
+                borderColor: 'primary.main',
+              },
+              '& input': {
+                backgroundColor: 'white',
+              },
+              '&.Mui-focused input': {
+                backgroundColor: 'white',
+              },
+            },
+          }}
         />
         <TextField
           label="Reading Time"
@@ -133,6 +159,19 @@ const AddBlog = () => {
           value={blog.reading_time}
           onChange={handleChange}
           required
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '&.Mui-focused fieldset': {
+                borderColor: 'primary.main',
+              },
+              '& input': {
+                backgroundColor: 'white',
+              },
+              '&.Mui-focused input': {
+                backgroundColor: 'white',
+              },
+            },
+          }}
         />
         <TextField
           label="Content"

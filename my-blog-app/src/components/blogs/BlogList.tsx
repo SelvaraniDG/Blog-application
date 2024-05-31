@@ -21,6 +21,10 @@ const BlogList = () => {
     navigate('/add');
   };
 
+  const handleDeleteBlog = (id: number) => {
+    setBlogs(prevBlogs => prevBlogs.filter(blog => blog.id !== id));
+  };
+
   return (
     <Box sx={blogListStyles.container}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -46,7 +50,7 @@ const BlogList = () => {
       </Box>
       <Box sx={blogListStyles.blogContainer}>
         {blogs.map(blog => (
-          <BlogItem key={blog.id} blog={blog} />
+          <BlogItem key={blog.id} blog={blog} onDelete={handleDeleteBlog} />
         ))}
       </Box>
     </Box>
