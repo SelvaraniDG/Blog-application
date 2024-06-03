@@ -8,7 +8,7 @@ export interface Blog {
     reading_time: string;
     content: string;
     likes: number;
-    comments: [];
+    comments: string[];
     liked?: boolean;
 }
 

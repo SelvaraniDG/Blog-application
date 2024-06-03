@@ -9,8 +9,12 @@ const BlogPost = () => {
   const [blog, setBlog] = useState<Blog | null>(null);
   const [comment, setComment] = useState<string>('');
   const [comments, setComments] = useState<string[]>([]);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
+    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+    setIsLoggedIn(storedIsLoggedIn === 'true');
+
     fetch(`http://localhost:5000/api/blogs/${id}`)
       .then(response => response.json())
       .then(data => {

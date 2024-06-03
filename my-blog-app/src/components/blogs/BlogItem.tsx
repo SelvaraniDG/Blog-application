@@ -50,7 +50,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ blog, onDelete }) => {
         throw new Error('Failed to delete blog');
       }
 
-      onDelete(blog.id);
+      onDelete && onDelete(blog.id);
     } catch (error) {
       console.error('Error deleting blog:', error);
     }

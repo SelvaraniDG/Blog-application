@@ -2,32 +2,43 @@ import React, { useState } from 'react';
 import { Box, Typography, TextField, Button } from '@mui/material';
 import { Link, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import { authActions } from '../../store/auth.slice';
 
-function Auth() {
-  const isLoggedIn = useSelector((state: any) => state.isLoggedIn);
-  console.log(isLoggedIn);
+// Array of username and passwords
+const users = [
+  { username: 'alice', password: 'alice1' },
+  { username: 'bob', password: 'bob1' },
+  { username: 'casie', password: 'casie1' },
+];
 
+function Auth() {
+  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false);
-  const onResRecieved = (data:any) =>{
-    dispatch(authActions.login());
-  }
 
-
-  const handleSubmit = (event:any) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (!username || !password) {
       setError('Please fill in all fields');
       return;
     }
-    setLoggedIn(true);
+
+    const user = users.find((u) => u.username === username && u.password === password);
+    if (user) {
+      dispatch(authActions.login(username));
+    } else {
+      setError('Invalid username or password');
+    }
   };
 
-  if (loggedIn) {
+  const handleLogout = () => {
+    dispatch(authActions.logout());
+  };
+
+  if (isLoggedIn) {
     return <Navigate to="/blogs" />;
   }
 
